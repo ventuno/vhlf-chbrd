@@ -14,7 +14,8 @@
     "express": "^4.15.4",
     "vue": "^2.3.3",
     "ws": "^3.1.0",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -32,7 +33,6 @@
     "vue-loader": "^12.1.0",
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5",
     "webpack-stream": "^4.0.0"
   }
 }
