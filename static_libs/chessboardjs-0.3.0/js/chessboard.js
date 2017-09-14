@@ -1,0 +1,1 @@
+/Users/ernestom/Documents/code/chessboardjs/src/chessboard.js
