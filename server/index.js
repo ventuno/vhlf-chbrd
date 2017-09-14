@@ -34,10 +34,7 @@ var methodsMap = {
 
 const msgUtils = msgUtilsFactory(methodsMap);
 
-var games = {};
-
-var GAME_STATUS_WAITING = 0;
-var GAME_STATUS_STARTED = 1;
+const games = {};
 
 app.use('/', express.static(path.resolve(__dirname, '../dist')));
 
@@ -46,11 +43,10 @@ function sendMsg(msg, ws) {
 }
 
 function createGame(params, ws) {
-  var gameId = process.env.NODE_ENV !== 'production' && params.fGameId ? params.fGameId : null;
-  var newGame = game({
+  const gameId = process.env.NODE_ENV !== 'production' && params.fGameId ? params.fGameId : null;
+  const newGame = game({
     id: gameId,
     role: params.role,
-    boardWidth: params.width,
   });
   games[newGame.id] = newGame;
   newGame.addPlayer(ws, params.width, params.role);
@@ -59,16 +55,15 @@ function createGame(params, ws) {
 }
 
 function joinGame(params, ws) {
-  var gameId = params.gameId;
-  var currentGame = games[gameId];
+  const gameId = params.gameId;
+  const currentGame = games[gameId];
   if (currentGame) {
-    currentGame.status = GAME_STATUS_STARTED;
     console.log('joined game', gameId);
     currentGame.addPlayer(ws, params.width);
     currentGame.getPlayers().forEach(function(player) {
       sendMsg(msgUtils.createMsg('startGame', {
         gameId: gameId,
-        width: currentGame.boardWidth,
+        width: currentGame.getBoardWidth(),
         role: player.pieces,
       }), player.ws);
     });

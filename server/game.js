@@ -22,7 +22,7 @@ function generateUniqueGameId() {
 module.exports = function(options) {
   const gameId = options.id || generateUniqueGameId();
   const players = [];
-  let boardWidth = -1;
+  let boardWidth = Infinity;
   let pendingMove = null;
 
   function addPlayer(webSocket, playerBoardWidth, pieces) {
@@ -42,7 +42,9 @@ module.exports = function(options) {
     id: gameId,
     // status: GAME_STATUS_WAITING,
     game: new Chess(),
-    boardWidth: -1,
+    getBoardWidth: () => {
+      return boardWidth;
+    },
     addPlayer: addPlayer,
     getPlayers: () => {
       return players;

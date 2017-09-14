@@ -26,6 +26,7 @@ export default {
     startGame: function(params) {
       this.$data.loading = false;
       this.game.role = params.role;
+      this.positionBoard(params.width);
       if (this.game.role === gameUtils.PIECES.BLACK) {
         this.game.board.flip();
       }
@@ -35,10 +36,6 @@ export default {
       if (params.color) {
         this.game.board.move(params.from + '-' + params.to);
       }
-    },
-
-    resize: function(params) {
-      this.positionBoard(params.width);
     },
 
     positionBoard: function(width) {
