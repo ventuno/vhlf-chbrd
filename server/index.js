@@ -12,7 +12,7 @@ const wss = new WebSocket.Server({
   server: server,
 });
 
-server.listen();
+server.listen(process.env.PORT || 3000);
 
 wss.on('connection', function connection(ws, req) {
   ws.on('message', function incoming(data) {
